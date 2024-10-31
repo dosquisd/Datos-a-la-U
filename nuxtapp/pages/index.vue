@@ -1,5 +1,9 @@
 <script setup lang="ts">
     import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+
+    useHead({
+        title: "Home",
+    });
 </script>
 
 <template>
@@ -8,7 +12,11 @@
             <LMap
                 class="w-full h-full"
                 :zoom="6"
-                :center="[47.21322, -1.559482]"
+                :center="[4.60971, -74.08175]"
+                :max-bounds="[
+                    [12.0, -82.0],
+                    [-4.0, -66.0],
+                ]"
                 :use-global-leaflet="false"
             >
                 <LTileLayer
