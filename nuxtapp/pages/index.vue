@@ -1,5 +1,7 @@
 <script setup lang="ts">
-    import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+    import { LMap, LTileLayer, LGeoJson } from "@vue-leaflet/vue-leaflet";
+    import type { GeoJsonObject } from "geojson";
+    import data from "@/data/data.json";
 
     useHead({
         title: "Home",
@@ -23,6 +25,7 @@
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     layer-type="base"
                 />
+                <LGeoJson :geojson="data as GeoJsonObject" />
             </LMap>
         </div>
     </ClientOnly>
