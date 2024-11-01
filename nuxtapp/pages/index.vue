@@ -9,6 +9,7 @@
     });
 
     const data = rawData as GeoJsonObject;
+    const { department } = useOptions();
 
     const DataShape = z.object({
         layer: z.object({
@@ -22,8 +23,6 @@
     });
 
     function handleClick(event: Event) {
-        const { department } = useOptions();
-
         department.value =
             DataShape.parse(event).layer.feature.properties.NOMBRE_DPT;
     }
@@ -31,7 +30,7 @@
 
 <template>
     <ClientOnly>
-        <div class="w-screen h-screen">
+        <div class="w-screen h-screen relative">
             <LMap
                 class="w-full h-full"
                 :zoom="6"
@@ -48,6 +47,26 @@
                 />
                 <LGeoJson :geojson="data" @click="handleClick" />
             </LMap>
+            <div
+                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid grid-cols-2 md:grid-cols-3 grid-rows-3 pointer-events-none"
+            >
+                <Card v-auto-animate class="col-start-1 row-start-3">
+                    <CardHeader>
+                        <CardTitle>Information</CardTitle>
+                        <CardDescription v-if="department">
+                            Selected department:
+                            <span>{{ department }}</span>
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Facilis delectus assumenda qui consectetur natus
+                        numquam non molestias earum sint? Consequuntur ea
+                        corporis distinctio minima facere eos fugit quo
+                        accusantium sint.
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     </ClientOnly>
 </template>

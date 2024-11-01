@@ -13,5 +13,6 @@ export default defineNuxtConfig({
         ],
         "@nuxt/eslint",
         "@nuxtjs/leaflet",
+        "@formkit/auto-animate",
     ],
 });
