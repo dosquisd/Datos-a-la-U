@@ -8,4 +8,4 @@ Todos los datos que están en la carpeta [`raw`](./raw/) están en los siguiente
 
 * Para las [`cifras de vulnerabilidad`](./raw/VULNRB_IPMxMZ.zip), [aquí](https://geoportal.dane.gov.co/visor-vulnerabilidad/).
 
-* Para los [`códigos de los departamentos y municipio`](./raw/), [aquí](https://www.fopep.gov.co/sheempoo/2019/02/Tabla-C%C3%B3digos-Dane.pdf).
+* Para los [`códigos de los departamentos y municipio`](./raw/Tabla-Códigos-Dane.pdf), [aquí](https://www.fopep.gov.co/sheempoo/2019/02/Tabla-C%C3%B3digos-Dane.pdf).
