@@ -1,5 +1,5 @@
 {
-    "ANTIOQUIA": {
+    "05": {
         "department": "ANTIOQUIA",
         "municipalities": [
             {
@@ -131,7 +131,7 @@
             }
         ]
     },
-    "ATLANTICO": {
+    "08": {
         "department": "ATLANTICO",
         "municipalities": [
             {
@@ -161,7 +161,7 @@
             }
         ]
     },
-    "BOGOTA": {
+    "11": {
         "department": "BOGOTA",
         "municipalities": [
             {
@@ -169,7 +169,7 @@
             }
         ]
     },
-    "BOLIVAR": {
+    "13": {
         "department": "BOLIVAR",
         "municipalities": [
             {
@@ -222,7 +222,7 @@
             }
         ]
     },
-    "BOYACA": {
+    "15": {
         "department": "BOYACA",
         "municipalities": [
             {
@@ -352,7 +352,7 @@
             }
         ]
     },
-    "CALDAS": {
+    "17": {
         "department": "CALDAS",
         "municipalities": [
             {
@@ -386,7 +386,7 @@
             }
         ]
     },
-    "CAQUETA": {
+    "18": {
         "department": "CAQUETA",
         "municipalities": [
             {
@@ -409,7 +409,7 @@
             }
         ]
     },
-    "CAUCA": {
+    "19": {
         "department": "CAUCA",
         "municipalities": [
             {
@@ -458,7 +458,7 @@
             }
         ]
     },
-    "CESAR": {
+    "20": {
         "department": "CESAR",
         "municipalities": [
             {
@@ -490,7 +490,7 @@
             }
         ]
     },
-    "CORDOBA": {
+    "23": {
         "department": "CORDOBA",
         "municipalities": [
             {
@@ -525,7 +525,7 @@
             }
         ]
     },
-    "CUNDINAMARCA": {
+    "25": {
         "department": "CUNDINAMARCA",
         "municipalities": [
             {
@@ -648,7 +648,7 @@
             }
         ]
     },
-    "CHOCO": {
+    "27": {
         "department": "CHOCO",
         "municipalities": [
             {
@@ -685,7 +685,7 @@
             }
         ]
     },
-    "HUILA": {
+    "41": {
         "department": "HUILA",
         "municipalities": [
             {
@@ -729,7 +729,7 @@
             }
         ]
     },
-    "LA GUAJIRA": {
+    "44": {
         "department": "LA GUAJIRA",
         "municipalities": [
             {
@@ -751,7 +751,7 @@
             }
         ]
     },
-    "MAGDALENA": {
+    "47": {
         "department": "MAGDALENA",
         "municipalities": [
             {
@@ -788,7 +788,7 @@
             }
         ]
     },
-    "META": {
+    "50": {
         "department": "META",
         "municipalities": [
             {
@@ -824,7 +824,7 @@
             }
         ]
     },
-    "NARI\u00d1O": {
+    "52": {
         "department": "NARI\u00d1O",
         "municipalities": [
             {
@@ -895,7 +895,7 @@
             }
         ]
     },
-    "N. DE SANTANDER": {
+    "54": {
         "department": "N. DE SANTANDER",
         "municipalities": [
             {
@@ -942,7 +942,7 @@
             }
         ]
     },
-    "QUINDIO": {
+    "63": {
         "department": "QUINDIO",
         "municipalities": [
             {
@@ -961,7 +961,7 @@
             }
         ]
     },
-    "RISARALDA": {
+    "66": {
         "department": "RISARALDA",
         "municipalities": [
             {
@@ -982,7 +982,7 @@
             }
         ]
     },
-    "SANTANDER": {
+    "68": {
         "department": "SANTANDER",
         "municipalities": [
             {
@@ -1076,7 +1076,7 @@
             }
         ]
     },
-    "SUCRE": {
+    "70": {
         "department": "SUCRE",
         "municipalities": [
             {
@@ -1109,7 +1109,7 @@
             }
         ]
     },
-    "TOLIMA": {
+    "73": {
         "department": "TOLIMA",
         "municipalities": [
             {
@@ -1163,7 +1163,7 @@
             }
         ]
     },
-    "VALLE DEL CAUCA": {
+    "76": {
         "department": "VALLE DEL CAUCA",
         "municipalities": [
             {
@@ -1212,7 +1212,7 @@
             }
         ]
     },
-    "ARAUCA": {
+    "81": {
         "department": "ARAUCA",
         "municipalities": [
             {
@@ -1226,7 +1226,7 @@
             }
         ]
     },
-    "CASANARE": {
+    "85": {
         "department": "CASANARE",
         "municipalities": [
             {
@@ -1252,7 +1252,7 @@
             }
         ]
     },
-    "PUTUMAYO": {
+    "86": {
         "department": "PUTUMAYO",
         "municipalities": [
             {
@@ -1272,7 +1272,7 @@
             }
         ]
     },
-    "SAN ANDRES": {
+    "88": {
         "department": "SAN ANDRES",
         "municipalities": [
             {
@@ -1281,7 +1281,7 @@
             }
         ]
     },
-    "AMAZONAS": {
+    "91": {
         "department": "AMAZONAS",
         "municipalities": [
             {
@@ -1299,7 +1299,7 @@
             }
         ]
     },
-    "GUAINIA": {
+    "94": {
         "department": "GUAINIA",
         "municipalities": [
             {
@@ -1315,7 +1315,7 @@
             }
         ]
     },
-    "GUAVIARE": {
+    "95": {
         "department": "GUAVIARE",
         "municipalities": [
             {
@@ -1326,7 +1326,7 @@
             }
         ]
     },
-    "VAUPES": {
+    "97": {
         "department": "VAUPES",
         "municipalities": [
             {
@@ -1339,7 +1339,7 @@
             }
         ]
     },
-    "VICHADA": {
+    "99": {
         "department": "VICHADA",
         "municipalities": [
             {
