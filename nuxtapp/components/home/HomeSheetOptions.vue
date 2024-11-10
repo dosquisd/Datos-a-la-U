@@ -1,14 +1,14 @@
 <template>
     <Sheet>
         <SheetTrigger as-child class="pointer-events-auto">
-            <Button variant="ghost"> Options </Button>
+            <Button variant="ghost"> Opciones </Button>
         </SheetTrigger>
         <SheetContent class="z-[1000]">
             <SheetHeader>
-                <SheetTitle>Options</SheetTitle>
+                <SheetTitle>Opciones</SheetTitle>
                 <SheetDescription>
-                    Here you will be hable to customize various parts of the UI
-                    to your liking.
+                    Aqui podras modificar varias partes de la interfaz para que
+                    quede a tu gusto.
                 </SheetDescription>
             </SheetHeader>
             <HomeSheetOptionsColorMode class="mt-4" />

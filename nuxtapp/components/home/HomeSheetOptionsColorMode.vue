@@ -26,7 +26,7 @@
 
 <template>
     <div class="space-y-4">
-        <Separator label="Color Schema" />
+        <Separator label="Esquema de Colores" />
         <div class="flex justify-center gap-2">
             <Button
                 v-for="{ value, icon, action } in options"

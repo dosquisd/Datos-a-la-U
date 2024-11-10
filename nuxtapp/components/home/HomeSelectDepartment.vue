@@ -8,7 +8,7 @@
 <template>
     <Select @update:model-value="(payload) => (department = payload)">
         <SelectTrigger class="w-full pointer-events-auto">
-            <SelectValue placeholder="Select a Department" />
+            <SelectValue placeholder="Selecciona un departamento" />
         </SelectTrigger>
         <SelectContent class="z-[1000]">
             <template v-if="departments.length">
