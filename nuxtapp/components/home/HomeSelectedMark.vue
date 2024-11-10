@@ -3,5 +3,20 @@
 </script>
 
 <template>
-    <span v-if="markData"> {{ markData.name }} </span>
+    <template v-if="markData">
+        <div
+            v-motion="{
+                initial: {
+                    y: 100,
+                    opacity: 0,
+                },
+                enter: {
+                    y: 0,
+                    opacity: 1,
+                },
+            }"
+        >
+            {{ markData.name }}
+        </div>
+    </template>
 </template>
