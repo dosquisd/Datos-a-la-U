@@ -86,6 +86,8 @@ def courthouse_count(
     min_date: date = None,
     max_date: date = None
 ) -> dict[str, list]:
+    print(len(dataset))
+
     subdf = dataset.loc[
         dataset["NomCasaJusticia"] == courthouse,
         ["FechaSolicitud", "IdSolicitud"]
