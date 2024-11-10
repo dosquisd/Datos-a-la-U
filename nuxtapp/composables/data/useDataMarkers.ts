@@ -1,11 +1,5 @@
 import { filteredData } from "@/schema/datashape";
 
-interface Mark {
-    lat: number;
-    lon: number;
-    name: string;
-}
-
 export default function () {
     const { department } = useOptions();
     const marks = computed<Mark[] | undefined>(() => {

@@ -1,5 +1,10 @@
 <script setup lang="ts">
-    import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet";
+    import {
+        LMap,
+        LTileLayer,
+        LMarker,
+        LTooltip,
+    } from "@vue-leaflet/vue-leaflet";
 
     useHead({
         title: "Home",
@@ -8,9 +13,14 @@
     const mapCenter = useState<[number, number]>("map-center", () => [
         4.60971, -74.08175,
     ]);
+    const mapZoom = useState<number>("map-zoom", () => 6);
 
     const { marks } = useDataMarkers();
     const colorMode = useColorMode();
+
+    async function handleMarkerClicked({ lat, lon }: Mark) {
+        mapCenter.value = [lat, lon];
+    }
 
     onMounted(() => {
         watch(
@@ -34,7 +44,7 @@
         <div class="w-screen h-screen relative">
             <LMap
                 class="w-full h-full"
-                :zoom="6"
+                :zoom="mapZoom"
                 :center="mapCenter"
                 :max-bounds="[
                     [16, -86],
@@ -61,8 +71,10 @@
                         v-for="{ lat, lon, name } in marks"
                         :key="name"
                         :lat-lng="[lat, lon]"
-                        @click="() => console.log('clicked')"
-                    />
+                        @click="() => handleMarkerClicked({ lat, lon, name })"
+                    >
+                        <LTooltip>{{ name }}</LTooltip>
+                    </LMarker>
                 </template>
             </LMap>
             <main
