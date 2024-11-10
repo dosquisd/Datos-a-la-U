@@ -1,12 +1,9 @@
 <script setup lang="ts">
     import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
-    import { capitalize } from "vue";
 
     useHead({
         title: "Home",
     });
-
-    const { departments } = useDataDepartments();
 </script>
 
 <template>
@@ -28,30 +25,11 @@
                 />
             </LMap>
             <main
-                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid grid-cols-2 md:grid-cols-3"
+                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid grid-cols-2 md:grid-cols-3 pointer-events-none"
             >
                 <section class="h-full w-full flex items-end">
                     <div class="w-full">
-                        <Select
-                            @update:model-value="
-                                (payload) => console.log(payload)
-                            "
-                        >
-                            <SelectTrigger class="w-full pointer-events-auto">
-                                <SelectValue placeholder="Department" />
-                            </SelectTrigger>
-                            <SelectContent class="z-[1000]">
-                                <template v-if="departments.length">
-                                    <SelectItem
-                                        v-for="item in departments"
-                                        :key="item"
-                                        :value="item"
-                                    >
-                                        {{ capitalize(item) }}
-                                    </SelectItem>
-                                </template>
-                            </SelectContent>
-                        </Select>
+                        <HomeSelectDepartment />
                     </div>
                 </section>
             </main>
