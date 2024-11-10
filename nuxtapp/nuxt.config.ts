@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         "@nuxt/eslint",
         "@nuxtjs/leaflet",
         "@formkit/auto-animate",
+        ["@nuxtjs/color-mode", { classSuffix: "" }],
     ],
     imports: {
         dirs: ["composables/**"],

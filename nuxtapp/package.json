@@ -13,8 +13,10 @@
         "@formkit/auto-animate": "^0.8.2",
         "@nuxt/eslint": "^0.6.1",
         "@nuxt/icon": "^1.6.1",
+        "@nuxtjs/color-mode": "^3.5.2",
         "@nuxtjs/leaflet": "^1.2.3",
         "@vue-leaflet/vue-leaflet": "^0.10.1",
+        "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "lucide-vue-next": "^0.454.0",
         "nuxt": "^3.13.2",
@@ -27,6 +29,8 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
+        "@iconify-json/line-md": "^1.2.2",
+        "@iconify-json/material-symbols": "^1.2.6",
         "@nuxtjs/tailwindcss": "^6.12.2",
         "@types/geojson": "^7946.0.14",
         "prettier": "^3.3.3",
