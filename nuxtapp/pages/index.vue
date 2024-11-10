@@ -18,8 +18,11 @@
     const { marks } = useDataMarkers();
     const colorMode = useColorMode();
 
-    async function handleMarkerClicked({ lat, lon }: Mark) {
-        mapCenter.value = [lat, lon];
+    async function handleMarkerClicked(mark: Mark) {
+        const { markData } = useDataMarkFocus();
+
+        mapCenter.value = [mark.lat, mark.lon];
+        markData.value = mark;
     }
 
     onMounted(() => {
@@ -78,14 +81,25 @@
                 </template>
             </LMap>
             <main
-                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid grid-cols-2 md:grid-cols-3 pointer-events-none"
+                v-auto-animate
+                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-rows-3 pointer-events-none"
             >
-                <section class="h-full w-full flex items-end">
+                <section
+                    class="h-full w-full flex items-end col-start-1 row-start-3"
+                >
                     <div class="w-full space-y-2">
                         <HomeSheetOptions />
                         <HomeSelectDepartment />
                     </div>
                 </section>
+
+                <section class="grid-row-0 grid-cols-1 col-start-1 row-start-2">
+                    <div>Hola xD</div>
+                </section>
+
+                <!-- <div v-for="i in 1" :key="i">
+                    {{ i }}
+                </div> -->
             </main>
         </div>
     </ClientOnly>
