@@ -94,7 +94,7 @@
                 </section>
 
                 <section class="grid-row-0 grid-cols-1 col-start-1 row-start-2">
-                    <div>Hola xD</div>
+                    <HomeSelectedMark />
                 </section>
 
                 <!-- <div v-for="i in 1" :key="i">
