@@ -1,0 +1,314 @@
+[
+    {
+        "department": "CUNDINAMARCA",
+        "municipalities": {
+            "CAJICA": [
+                {
+                    "courthouse": "CASA DE JUSTICIA CAJICA",
+                    "lat": "4.9178877",
+                    "lon": "-74.02831549556014"
+                }
+            ],
+            "TOCANCIPA": null,
+            "CHIA": null,
+            "SOACHA": null,
+            "GIRARDOT": null
+        }
+    },
+    {
+        "department": "ANTIOQUIA",
+        "municipalities": {
+            "FRONTINO": null,
+            "CAUCASIA": null,
+            "YARUMAL": null,
+            "AMALFI": null,
+            "LA CEJA": null,
+            "SANTAFE DE ANTIOQUIA": null,
+            "YALI": null,
+            "BELLO": null,
+            "ZARAGOZA": null,
+            "TURBO": null,
+            "APARTADO": null,
+            "VEGACHI": null,
+            "ANORI": null,
+            "RIONEGRO": null,
+            "NECHI": null,
+            "TARAZA": null,
+            "SEGOVIA": null,
+            "EL BAGRE": null,
+            "CACERES": null,
+            "ENVIGADO": null,
+            "REMEDIOS": null,
+            "YONDO": null,
+            "ITAGUI": null,
+            "MEDELLIN": null
+        }
+    },
+    {
+        "department": "CAUCA",
+        "municipalities": {
+            "CORINTO": null,
+            "SANTANDER DE QUILICHAO": null,
+            "BUENOS AIRES": null,
+            "PUERTO TEJADA": null,
+            "POPAYAN": null,
+            "TORIBIO": null,
+            "PIENDAMO": null
+        }
+    },
+    {
+        "department": "SANTANDER",
+        "municipalities": {
+            "FLORIDABLANCA": null,
+            "BARRANCABERMEJA": null,
+            "BUCARAMANGA": null,
+            "SAN GIL": null
+        }
+    },
+    {
+        "department": "CALDAS",
+        "municipalities": {
+            "MANIZALES": [
+                {
+                    "courthouse": "CASA DE JUSTICIA MANIZALES",
+                    "lat": "5.08383275",
+                    "lon": "-75.48998406302017"
+                }
+            ],
+            "SUPIA": null,
+            "LA DORADA": null,
+            "MARQUETALIA": null,
+            "RIOSUCIO": null
+        }
+    },
+    {
+        "department": "BOYACA",
+        "municipalities": {
+            "PAIPA": null,
+            "CHIQUINQUIRA": null,
+            "TUNJA": null,
+            "PUERTO BOYACA": null,
+            "VILLA DE LEYVA": null
+        }
+    },
+    {
+        "department": "RISARALDA",
+        "municipalities": {
+            "PEREIRA": null,
+            "DOSQUEBRADAS": null
+        }
+    },
+    {
+        "department": "TOLIMA",
+        "municipalities": {
+            "ESPINAL": [
+                {
+                    "courthouse": "CENTRO DE CONVIVENCIA CIUDADANA ESPINAL",
+                    "lat": "4.14104275",
+                    "lon": "-74.88272482555126"
+                }
+            ],
+            "IBAGUE": null,
+            "ROVIRA": null,
+            "ORTEGA": null,
+            "ATACO": null
+        }
+    },
+    {
+        "department": "VALLE DEL CAUCA",
+        "municipalities": {
+            "CALI": null,
+            "BUENAVENTURA": null,
+            "GUADALAJARA DE BUGA": null,
+            "PALMIRA": null,
+            "TULUA": null,
+            "PRADERA": null,
+            "CARTAGO": null,
+            "FLORIDA": null
+        }
+    },
+    {
+        "department": "ATLANTICO",
+        "municipalities": {
+            "BARRANQUILLA": [
+                {
+                    "courthouse": "CASA DE JUSTICIA BARRANQUILLA SIMON BOLIVAR",
+                    "lat": "10.94466",
+                    "lon": "-74.7778496"
+                },
+                {
+                    "courthouse": "CASA DE JUSTICIA BARRANQUILLA LA PAZ",
+                    "lat": "10.9647037",
+                    "lon": "-74.832914"
+                }
+            ],
+            "BARANOA": null
+        }
+    },
+    {
+        "department": "HUILA",
+        "municipalities": {
+            "NEIVA": null,
+            "LA PLATA": null
+        }
+    },
+    {
+        "department": "CORDOBA",
+        "municipalities": {
+            "MONTERIA": null
+        }
+    },
+    {
+        "department": "SUCRE",
+        "municipalities": {
+            "SAN ONOFRE": null,
+            "SUCRE": null
+        }
+    },
+    {
+        "department": "CAQUETA",
+        "municipalities": {
+            "EL DONCELLO": null,
+            "FLORENCIA": null
+        }
+    },
+    {
+        "department": "PUTUMAYO",
+        "municipalities": {
+            "MOCOA": [
+                {
+                    "courthouse": "CASA DE JUSTICIA MOCOA",
+                    "lat": "1.1461874",
+                    "lon": "-76.6487706214489"
+                }
+            ],
+            "PUERTO ASIS": null,
+            "PUERTO CAICEDO": null
+        }
+    },
+    {
+        "department": "META",
+        "municipalities": {
+            "VILLAVICENCIO": null
+        }
+    },
+    {
+        "department": "NARI\u00d1O",
+        "municipalities": {
+            "IPIALES": [
+                {
+                    "courthouse": "CASA DE JUSTICIA IPIALES",
+                    "lat": "0.8217788500000001",
+                    "lon": "-77.63440168240919"
+                }
+            ],
+            "PASTO": null,
+            "TUMACO": null,
+            "TUQUERRES": null
+        }
+    },
+    {
+        "department": "CASANARE",
+        "municipalities": {
+            "YOPAL": null,
+            "NUNCHIA": null,
+            "LA SALINA": null
+        }
+    },
+    {
+        "department": "BOLIVAR",
+        "municipalities": {
+            "CARTAGENA": [
+                {
+                    "courthouse": "CASA DE JUSTICIA CARTAGENA COUNTRY",
+                    "lat": "10.3924651",
+                    "lon": "-75.497959"
+                },
+                {
+                    "courthouse": "CASA DE JUSTICIA CARTAGENA CANAPOTE",
+                    "lat": "10.440633",
+                    "lon": "-75.52613929668402"
+                }
+            ],
+            "MAGANGUE": null,
+            "CANTAGALLO": null,
+            "SAN JACINTO": null
+        }
+    },
+    {
+        "department": "QUINDIO",
+        "municipalities": {
+            "ARMENIA": [
+                {
+                    "courthouse": "CASA DE JUSTICIA ARMENIA",
+                    "lat": "4.5068861",
+                    "lon": "-75.69565675809227"
+                }
+            ]
+        }
+    },
+    {
+        "department": "LA GUAJIRA",
+        "municipalities": {
+            "BARRANCAS": [
+                {
+                    "courthouse": "CASA DE JUSTICIA BARRANCAS",
+                    "lat": "10.9560657",
+                    "lon": "-72.7868053"
+                }
+            ],
+            "RIOHACHA": null,
+            "URIBIA": null
+        }
+    },
+    {
+        "department": "CHOCO",
+        "municipalities": {
+            "ISTMINA": null,
+            "QUIBDO": null,
+            "CONDOTO": null,
+            "NOVITA": null,
+            "TADO": null
+        }
+    },
+    {
+        "department": "MAGDALENA",
+        "municipalities": {
+            "SANTA MARTA": [
+                {
+                    "courthouse": "CASA DE JUSTICIA SANTA MARTA",
+                    "lat": "11.22549585",
+                    "lon": "-74.20498321082647"
+                }
+            ]
+        }
+    },
+    {
+        "department": "ARAUCA",
+        "municipalities": {
+            "SARAVENA": null
+        }
+    },
+    {
+        "department": "CESAR",
+        "municipalities": {
+            "VALLEDUPAR": null,
+            "AGUACHICA": null
+        }
+    },
+    {
+        "department": "NORTE DE SANTANDER",
+        "municipalities": {
+            "OCA\u00d1A": null,
+            "VILLA DEL ROSARIO": null,
+            "TIBU": null,
+            "ABREGO": null
+        }
+    },
+    {
+        "department": "GUAVIARE",
+        "municipalities": {
+            "CALAMAR": null
+        }
+    }
+]
