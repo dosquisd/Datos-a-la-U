@@ -86,8 +86,6 @@ def courthouse_count(
     min_date: date = None,
     max_date: date = None
 ) -> dict[str, list]:
-    print(len(dataset))
-
     subdf = dataset.loc[
         dataset["NomCasaJusticia"] == courthouse,
         ["FechaSolicitud", "IdSolicitud"]
@@ -98,11 +96,11 @@ def courthouse_count(
     count_df = subdf.groupby(by="FechaSolicitud").count()
     count_df.rename(columns={"IdSolicitud": "Count"}, inplace=True)
 
-    # Limitar fechas
-    count_df = count_df.loc[
-        (count_df.index >= min_date if min_date is not None else True) &
-        (count_df.index <= max_date if max_date is not None else True)
-    ]
+    # Limit dates
+    if min_date is not None:
+        count_df = count_df.loc[count_df.index >= min_date.strftime("%Y-%m-%d")]
+    if max_date is not None:
+        count_df = count_df.loc[count_df.index <= max_date.strftime("%Y-%m-%d")]
 
     return {
         "FechaSolicitud": [ts.strftime('%Y-%m-%d') for ts in count_df.index],
