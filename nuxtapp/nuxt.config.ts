@@ -15,4 +15,7 @@ export default defineNuxtConfig({
         "@nuxtjs/leaflet",
         "@formkit/auto-animate",
     ],
+    imports: {
+        dirs: ["composables/**"],
+    },
 });

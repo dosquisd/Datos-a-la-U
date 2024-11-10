@@ -1,31 +1,12 @@
 <script setup lang="ts">
-    import type { GeoJsonObject } from "geojson";
-    import { LMap, LTileLayer, LGeoJson } from "@vue-leaflet/vue-leaflet";
-    import { z } from "zod";
-    import rawData from "@/data/data.json";
+    import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
+    import { capitalize } from "vue";
 
     useHead({
         title: "Home",
     });
 
-    const data = rawData as GeoJsonObject;
-    const { department } = useOptions();
-
-    const DataShape = z.object({
-        layer: z.object({
-            feature: z.object({
-                properties: z.object({
-                    DPTO: z.string(),
-                    NOMBRE_DPT: z.string(),
-                }),
-            }),
-        }),
-    });
-
-    function handleClick(event: Event) {
-        department.value =
-            DataShape.parse(event).layer.feature.properties.NOMBRE_DPT;
-    }
+    const { departments } = useDataDepartments();
 </script>
 
 <template>
@@ -45,28 +26,35 @@
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     layer-type="base"
                 />
-                <LGeoJson :geojson="data" @click="handleClick" />
             </LMap>
-            <div
-                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid grid-cols-2 md:grid-cols-3 grid-rows-3 pointer-events-none"
+            <main
+                class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid grid-cols-2 md:grid-cols-3"
             >
-                <Card v-auto-animate class="col-start-1 row-start-3">
-                    <CardHeader>
-                        <CardTitle>Information</CardTitle>
-                        <CardDescription v-if="department">
-                            Selected department:
-                            <span>{{ department }}</span>
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Facilis delectus assumenda qui consectetur natus
-                        numquam non molestias earum sint? Consequuntur ea
-                        corporis distinctio minima facere eos fugit quo
-                        accusantium sint.
-                    </CardContent>
-                </Card>
-            </div>
+                <section class="h-full w-full flex items-end">
+                    <div class="w-full">
+                        <Select
+                            @update:model-value="
+                                (payload) => console.log(payload)
+                            "
+                        >
+                            <SelectTrigger class="w-full pointer-events-auto">
+                                <SelectValue placeholder="Department" />
+                            </SelectTrigger>
+                            <SelectContent class="z-[1000]">
+                                <template v-if="departments.length">
+                                    <SelectItem
+                                        v-for="item in departments"
+                                        :key="item"
+                                        :value="item"
+                                    >
+                                        {{ capitalize(item) }}
+                                    </SelectItem>
+                                </template>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </section>
+            </main>
         </div>
     </ClientOnly>
 </template>
