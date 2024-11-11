@@ -1,12 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
-import pandas as pd
-import os
-import uvicorn
-import sys
-import json
 
+import json
+import pandas as pd
 from datetime import date
+
+import os
+import sys
+
+from api.utils import dpto_to_cod, mpio_to_cod, count
 
 app = FastAPI()
 
@@ -19,6 +21,7 @@ async def startup_event():
 
     global dataset
     global DATA_PATH
+    global cods
 
     current_path = os.getcwd()
     DATA_PATH = os.path.join(current_path, 'data')
@@ -28,7 +31,17 @@ async def startup_event():
             raise RuntimeError('data_path does not exists')
 
         dataset = pd.read_csv(
-            os.path.join(DATA_PATH, "processed", "dataset.csv"))
+            os.path.join(DATA_PATH, "processed", "dataset.csv")
+        )
+        dataset["FechaSolicitud"] = pd.to_datetime(dataset["FechaSolicitud"], format="%Y-%m-%d")
+
+        with open(
+            os.path.join(DATA_PATH, "processed", "dpts_cods_mpios.json"),
+            mode="r",
+            encoding="utf-8"
+        ) as json_data:
+            cods = json.load(json_data)
+
     except Exception as e:
         sys.stderr.write(f'error during load ({startup_event.__name__}): {e}')
         sys.exit(1)
@@ -91,22 +104,37 @@ def courthouse_count(
         ["FechaSolicitud", "IdSolicitud"]
     ].reset_index(drop=True)
 
-    subdf["FechaSolicitud"] = pd.to_datetime(subdf["FechaSolicitud"], format="%Y-%m-%d")
-    subdf.index = subdf["IdSolicitud"]
-    count_df = subdf.groupby(by="FechaSolicitud").count()
-    count_df.rename(columns={"IdSolicitud": "Count"}, inplace=True)
-
-    # Limit dates
-    if min_date is not None:
-        count_df = count_df.loc[count_df.index >= min_date.strftime("%Y-%m-%d")]
-    if max_date is not None:
-        count_df = count_df.loc[count_df.index <= max_date.strftime("%Y-%m-%d")]
-
-    return {
-        "FechaSolicitud": [ts.strftime('%Y-%m-%d') for ts in count_df.index],
-        "Count": count_df["Count"].tolist()
-    }
+    return count(subdf, min_date, max_date)
 
 
-if __name__ == '__main__':
-    uvicorn.run('main:app', port=8000, reload=True)
+@app.get("/data/department-count")
+def department_count(
+        department: str,
+        min_date: date = None,
+        max_date: date = None
+) -> dict[str, list]:
+    cod_dpto = dpto_to_cod(department, cods)
+    subdf = dataset.loc[
+        dataset["COD_DPTO"] == cod_dpto,
+        ["FechaSolicitud", "IdSolicitud"]
+    ].reset_index(drop=True)
+
+    return count(subdf, min_date, max_date)
+
+
+@app.get("/data/municipality-count")
+def municipality_count(
+    municipality: str,
+    department: str,
+    min_date: date = None,
+    max_date: date = None
+) -> dict[str, list]:
+    cod_dpto = dpto_to_cod(department, cods)
+    cod_mpio = mpio_to_cod(municipality, department, cods)
+
+    subdf = dataset.loc[
+        (dataset["COD_DPTO"] == cod_dpto) & (dataset["COD_MPIO"] == cod_mpio),
+        ["FechaSolicitud", "IdSolicitud"]
+    ].reset_index(drop=True)
+
+    return count(subdf, min_date, max_date)
