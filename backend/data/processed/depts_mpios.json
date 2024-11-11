@@ -5,8 +5,8 @@
             "CAJICA": [
                 {
                     "courthouse": "CASA DE JUSTICIA CAJICA",
-                    "lat": "4.9177591440423525",
-                    "lon": "-74.02824617966276"
+                    "lat": "4.9178877",
+                    "lon": "-74.02831549556014"
                 }
             ],
             "TOCANCIPA": null,
@@ -18,13 +18,7 @@
     {
         "department": "ANTIOQUIA",
         "municipalities": {
-            "FRONTINO": [
-                {
-                    "courthouse": "CASA DE JUSTICIA FRONTINO",
-                    "lat": "6.78041155358943",
-                    "lon": "-76.12879722053174"
-                }
-            ],
+            "FRONTINO": null,
             "CAUCASIA": null,
             "YARUMAL": null,
             "AMALFI": null,
@@ -53,13 +47,7 @@
     {
         "department": "CAUCA",
         "municipalities": {
-            "CORINTO": [
-                {
-                    "courthouse": "CASA DE JUSTICIA CORINTO",
-                    "lat": "3.1739420615474945",
-                    "lon": "-76.26675744562523"
-                }
-            ],
+            "CORINTO": null,
             "SANTANDER DE QUILICHAO": null,
             "BUENOS AIRES": null,
             "PUERTO TEJADA": null,
@@ -71,13 +59,7 @@
     {
         "department": "SANTANDER",
         "municipalities": {
-            "FLORIDABLANCA": [
-                {
-                    "courthouse": "CASA DE JUSTICIA FLORIDABLANCA",
-                    "lat": "7.084478022530783",
-                    "lon": "-73.08626690909682"
-                }
-            ],
+            "FLORIDABLANCA": null,
             "BARRANCABERMEJA": null,
             "BUCARAMANGA": null,
             "SAN GIL": null
@@ -89,8 +71,8 @@
             "MANIZALES": [
                 {
                     "courthouse": "CASA DE JUSTICIA MANIZALES",
-                    "lat": "5.083682692534467",
-                    "lon": "-75.4898443269076"
+                    "lat": "5.08383275",
+                    "lon": "-75.48998406302017"
                 }
             ],
             "SUPIA": null,
@@ -102,13 +84,7 @@
     {
         "department": "BOYACA",
         "municipalities": {
-            "PAIPA": [
-                {
-                    "courthouse": "CENTRO DE CONVIVENCIA CIUDADANA PAIPA",
-                    "lat": "5.7810695656929845",
-                    "lon": "-73.11904920356483"
-                }
-            ],
+            "PAIPA": null,
             "CHIQUINQUIRA": null,
             "TUNJA": null,
             "PUERTO BOYACA": null,
@@ -118,18 +94,7 @@
     {
         "department": "RISARALDA",
         "municipalities": {
-            "PEREIRA": [
-                {
-                    "courthouse": "CASA DE JUSTICIA PEREIRA CUBA",
-                    "lat": "4.806172955241937",
-                    "lon": "-75.73858388511246"
-                },
-                {
-                    "courthouse": "CASA DE JUSTICIA PEREIRA VILLA SANTANA",
-                    "lat": "4.7975193",
-                    "lon": "-75.669156"
-                }
-            ],
+            "PEREIRA": null,
             "DOSQUEBRADAS": null
         }
     },
@@ -139,8 +104,8 @@
             "ESPINAL": [
                 {
                     "courthouse": "CENTRO DE CONVIVENCIA CIUDADANA ESPINAL",
-                    "lat": "4.141305108188722",
-                    "lon": "-74.88180575628026"
+                    "lat": "4.14104275",
+                    "lon": "-74.88272482555126"
                 }
             ],
             "IBAGUE": null,
@@ -152,23 +117,7 @@
     {
         "department": "VALLE DEL CAUCA",
         "municipalities": {
-            "CALI": [
-                {
-                    "courthouse": "CASA DE JUSTICIA CALI AGUABLANCA",
-                    "lat": "3.4265512800194218",
-                    "lon": "-76.48320549066138"
-                },
-                {
-                    "courthouse": "CASA DE JUSTICIA PEREIRA VILLA SANTANA",
-                    "lat": "4.797551416217657",
-                    "lon": "-75.66920964500551"
-                },
-                {
-                    "courthouse": "CASA DE JUSTICIA CALI ALFONSO LOPEZ",
-                    "lat": "3.459825152354952",
-                    "lon": "-76.48016611039472"
-                }
-            ],
+            "CALI": null,
             "BUENAVENTURA": null,
             "GUADALAJARA DE BUGA": null,
             "PALMIRA": null,
@@ -184,13 +133,13 @@
             "BARRANQUILLA": [
                 {
                     "courthouse": "CASA DE JUSTICIA BARRANQUILLA SIMON BOLIVAR",
-                    "lat": "10.944887895536445",
-                    "lon": "-74.77704606972046"
+                    "lat": "10.94466",
+                    "lon": "-74.7778496"
                 },
                 {
                     "courthouse": "CASA DE JUSTICIA BARRANQUILLA LA PAZ",
-                    "lat": "10.96490008162852",
-                    "lon": "-74.83244572128775"
+                    "lat": "10.9647037",
+                    "lon": "-74.832914"
                 }
             ],
             "BARANOA": null
@@ -199,51 +148,27 @@
     {
         "department": "HUILA",
         "municipalities": {
-            "NEIVA": [
-                {
-                    "courthouse": "CASA DE JUSTICIA NEIVA",
-                    "lat": "2.9271633326930795",
-                    "lon": "-75.28530450778678"
-                }
-            ],
+            "NEIVA": null,
             "LA PLATA": null
         }
     },
     {
         "department": "CORDOBA",
         "municipalities": {
-            "MONTERIA": [
-                {
-                    "courthouse": "CASA DE JUSTICIA MONTERIA",
-                    "lat": "8.726573420590638",
-                    "lon": "-75.88710807153684"
-                }
-            ]
+            "MONTERIA": null
         }
     },
     {
         "department": "SUCRE",
         "municipalities": {
-            "SAN ONOFRE": [
-                {
-                    "courthouse": "CASA DE JUSTICIA SAN ONOFRE",
-                    "lat": "9.73445103397523",
-                    "lon": "-75.52517817532036"
-                }
-            ],
+            "SAN ONOFRE": null,
             "SUCRE": null
         }
     },
     {
         "department": "CAQUETA",
         "municipalities": {
-            "EL DONCELLO": [
-                {
-                    "courthouse": "CASA DE JUSTICIA EL DONCELLO",
-                    "lat": "1.68427471384746",
-                    "lon": "-75.28651648889765"
-                }
-            ],
+            "EL DONCELLO": null,
             "FLORENCIA": null
         }
     },
@@ -253,8 +178,8 @@
             "MOCOA": [
                 {
                     "courthouse": "CASA DE JUSTICIA MOCOA",
-                    "lat": "1.1442317171707361",
-                    "lon": "-76.64374712139143"
+                    "lat": "1.1461874",
+                    "lon": "-76.6487706214489"
                 }
             ],
             "PUERTO ASIS": null,
@@ -264,13 +189,7 @@
     {
         "department": "META",
         "municipalities": {
-            "VILLAVICENCIO": [
-                {
-                    "courthouse": "CASA DE JUSTICIA VILLAVICENCIO",
-                    "lat": "4.082057695891705",
-                    "lon": "-73.66801577414442"
-                }
-            ]
+            "VILLAVICENCIO": null
         }
     },
     {
@@ -279,8 +198,8 @@
             "IPIALES": [
                 {
                     "courthouse": "CASA DE JUSTICIA IPIALES",
-                    "lat": "0.8217993582037513",
-                    "lon": "-77.63438427415292"
+                    "lat": "0.8217788500000001",
+                    "lon": "-77.63440168240919"
                 }
             ],
             "PASTO": null,
@@ -291,13 +210,7 @@
     {
         "department": "CASANARE",
         "municipalities": {
-            "YOPAL": [
-                {
-                    "courthouse": "CASA DE JUSTICIA YOPAL",
-                    "lat": "5.340072794638538",
-                    "lon": "-72.3814712330338"
-                }
-            ],
+            "YOPAL": null,
             "NUNCHIA": null,
             "LA SALINA": null
         }
@@ -307,19 +220,14 @@
         "municipalities": {
             "CARTAGENA": [
                 {
-                    "courthouse": "CASA DE JUSTICIA CARTAGENA CHIQUINQUIRA",
-                    "lat": "10.406430408765658",
-                    "lon": "-75.49174928452841"
-                },
-                {
                     "courthouse": "CASA DE JUSTICIA CARTAGENA COUNTRY",
-                    "lat": "10.392507070630124",
-                    "lon": "-75.49799880354448"
+                    "lat": "10.3924651",
+                    "lon": "-75.497959"
                 },
                 {
                     "courthouse": "CASA DE JUSTICIA CARTAGENA CANAPOTE",
-                    "lat": "10.44030868170804",
-                    "lon": "-75.52618441319983"
+                    "lat": "10.440633",
+                    "lon": "-75.52613929668402"
                 }
             ],
             "MAGANGUE": null,
@@ -333,8 +241,8 @@
             "ARMENIA": [
                 {
                     "courthouse": "CASA DE JUSTICIA ARMENIA",
-                    "lat": "4.506952954170217",
-                    "lon": "-75.69573905573891"
+                    "lat": "4.5068861",
+                    "lon": "-75.69565675809227"
                 }
             ]
         }
@@ -345,8 +253,8 @@
             "BARRANCAS": [
                 {
                     "courthouse": "CASA DE JUSTICIA BARRANCAS",
-                    "lat": "10.95600177257885",
-                    "lon": "-72.79071766120906"
+                    "lat": "10.9560657",
+                    "lon": "-72.7868053"
                 }
             ],
             "RIOHACHA": null,
@@ -356,13 +264,7 @@
     {
         "department": "CHOCO",
         "municipalities": {
-            "ISTMINA": [
-                {
-                    "courthouse": "CASA DE JUSTICIA ISTMINA",
-                    "lat": "5.145913252947676",
-                    "lon": "-76.68549326708033"
-                }
-            ],
+            "ISTMINA": null,
             "QUIBDO": null,
             "CONDOTO": null,
             "NOVITA": null,
@@ -375,8 +277,8 @@
             "SANTA MARTA": [
                 {
                     "courthouse": "CASA DE JUSTICIA SANTA MARTA",
-                    "lat": "11.225375058056327",
-                    "lon": "-74.20494754463957"
+                    "lat": "11.22549585",
+                    "lon": "-74.20498321082647"
                 }
             ]
         }
@@ -384,43 +286,20 @@
     {
         "department": "ARAUCA",
         "municipalities": {
-            "SARAVENA": [
-                {
-                    "courthouse": "CENTRO DE CONVIVENCIA CIUDADANA SARAVENA",
-                    "lat": "6.959398761817435",
-                    "lon": "-71.86876437412786"
-                }
-            ]
+            "SARAVENA": null
         }
     },
     {
         "department": "CESAR",
         "municipalities": {
-            "VALLEDUPAR": [
-                {
-                    "courthouse": "CASA DE JUSTICIA VALLEDUPAR PRIMERO DE MAYO",
-                    "lat": "10.453908467941556",
-                    "lon": "-73.25290805691729"
-                },
-                {
-                    "courthouse": "CASA DE JUSTICIA VALLEDUPAR LA NEVADA",
-                    "lat": "10.475351870903145",
-                    "lon": "-73.28258080354357"
-                }
-            ],
+            "VALLEDUPAR": null,
             "AGUACHICA": null
         }
     },
     {
         "department": "NORTE DE SANTANDER",
         "municipalities": {
-            "OCA\u00d1A": [
-                {
-                    "courthouse": "CENTRO DE CONVIVENCIA CIUDADANA OCAÑA",
-                    "lat": "8.25360405051517",
-                    "lon": "-73.35937149375982"
-                }
-            ],
+            "OCA\u00d1A": null,
             "VILLA DEL ROSARIO": null,
             "TIBU": null,
             "ABREGO": null
@@ -429,13 +308,7 @@
     {
         "department": "GUAVIARE",
         "municipalities": {
-            "CALAMAR": [
-                {
-                    "courthouse": "CENTRO DE CONVIVENCIA CIUDADANA CALAMAR",
-                    "lat": "1.9592711770616045",
-                    "lon": "-72.65403934470339"
-                }
-            ]
+            "CALAMAR": null
         }
     }
 ]
