@@ -15,6 +15,7 @@ export default defineNuxtConfig({
         "@nuxtjs/leaflet",
         "@formkit/auto-animate",
         ["@nuxtjs/color-mode", { classSuffix: "" }],
+        "@vueuse/motion/nuxt",
     ],
     imports: {
         dirs: ["composables/**"],
