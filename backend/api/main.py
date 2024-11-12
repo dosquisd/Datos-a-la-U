@@ -90,7 +90,8 @@ def by_department(
 
     async def event_generator():
         data = [row.to_dict() for _, row in response.iterrows()]
-        data["FechaSolicitud"] = [ts.strftime('%Y-%m-%d') for ts in response["FechaSolicitud"]]
+        for i in range(len(data)):
+            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime('%Y-%m-%d')
 
         for row in data:
             yield json.dumps(row)
