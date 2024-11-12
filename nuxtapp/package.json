@@ -22,12 +22,14 @@
         "@vueuse/motion": "^2.2.6",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
+        "lodash": "^4.17.21",
         "lucide-vue-next": "^0.454.0",
         "nuxt": "^3.13.2",
         "radix-vue": "^1.9.8",
         "shadcn-nuxt": "^0.10.4",
         "tailwind-merge": "^2.5.4",
         "tailwindcss-animate": "^1.0.7",
+        "vaul-vue": "^0.2.0",
         "vue": "latest",
         "vue-router": "latest",
         "zod": "^3.23.8"
@@ -37,6 +39,7 @@
         "@iconify-json/material-symbols": "^1.2.6",
         "@nuxtjs/tailwindcss": "^6.12.2",
         "@types/geojson": "^7946.0.14",
+        "@types/lodash": "^4.17.13",
         "prettier": "^3.3.3",
         "typescript": "^5.6.3"
     }

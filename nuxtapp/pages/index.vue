@@ -5,6 +5,7 @@
         LMarker,
         LTooltip,
     } from "@vue-leaflet/vue-leaflet";
+    import { isEqual } from "lodash";
 
     useHead({
         title: "Home",
@@ -19,9 +20,12 @@
     const colorMode = useColorMode();
 
     async function handleMarkerClicked(mark: Mark) {
-        const { markData } = useDataMarkFocus()
+        const { markData } = useDataMarkFocus();
 
         mapCenter.value = [mark.lat, mark.lon];
+
+        if (isEqual(markData.value, mark)) return;
+
         markData.value = mark;
     }
 
@@ -84,7 +88,9 @@
                 v-auto-animate
                 class="absolute top-0 left-0 w-full h-full p-4 z-[1000] grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 grid-rows-3 pointer-events-none"
             >
-                <section class="h-full w-full flex items-end col-start-1 row-start-3">
+                <section
+                    class="h-full w-full flex items-end col-start-1 row-start-3"
+                >
                     <div class="w-full space-y-2">
                         <HomeSheetOptions />
                         <HomeSelectDepartment />
@@ -94,7 +100,7 @@
                 <section class="grid-row-0 grid-cols-1 col-start-1 row-start-2">
                     <HomeSelectedMark />
                 </section>
-                
+
                 <!-- <div v-for="i in 1" :key="i">
                     {{ i }}
                 </div> -->
