@@ -8,5 +8,5 @@ class TimeSeriesModels(BaseModel):
 
 
 class TimeSeries(BaseModel):
-    FechaSolicitud: list[str]  # Fechas en formato %Y-%m-%d
+    FechaSolicitud: list[str]  # Format %Y-%m-%d
     Count: list[int]
