@@ -23,6 +23,7 @@ async def startup_event():
     global dataset
     global DATA_PATH
     global cods
+    global courthouses
 
     current_path = os.getcwd()
     DATA_PATH = os.path.join(current_path, 'data')
@@ -42,6 +43,13 @@ async def startup_event():
             encoding="utf-8"
         ) as json_data:
             cods = json.load(json_data)
+
+        with open(
+            os.path.join(DATA_PATH, "processed", "depts_mpios.json"),
+            mode="r",
+            encoding="utf-8"
+        ) as json_data:
+            courthouses = json.load(json_data)
 
     except Exception as e:
         sys.stderr.write(f'error during load ({startup_event.__name__}): {e}')
@@ -97,6 +105,35 @@ def by_department(
             yield json.dumps(row)
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+
+@app.get("/department")
+def departments() -> list[str]:
+    """
+    Returns a list with all departments
+    """
+    return [x["department"] for x in courthouses]
+
+
+@app.get("/courthouses")
+def courthouses_department(department: str | None = None) -> list[str]:
+    """
+    Returns a list of courthouses. If department is None, then returns all
+    courthouses, otherwise returns all courthouses in the given department
+    """
+    tmp = courthouses.copy()
+    if department is not None:
+        department = department.upper()
+        tmp = [dic for dic in tmp if dic["department"] == department]
+
+    out = []
+    for dic in tmp:
+        for courths in dic["municipalities"].values():
+            if courths is None:
+                continue
+            out.extend([x["courthouse"] for x in courths])
+
+    return out
 
 
 @app.get("/data/courthouse-count")
