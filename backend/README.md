@@ -6,6 +6,7 @@
 .
 ├── api  # Desarrollo de la API
 │   ├── main.py
+│   ├── schemas.py
 │   └── utils.py
 ├── data  # Datos utilizados
 │   ├── depts_municipalities_cods.ipynb
@@ -51,9 +52,21 @@ Para poder ejecutar la API se deben ejecutar los siguientes comandos desde conso
 
 ```bash
 $cd backend
-backend$python3 -m venv .venv  # [Opcional] Crear entorno virtual
-backend$pip install -r requirements.txt
-backend$uvicorn api.app:app
+````
+
+Crear y activar entorno virtual
+
+```bash
+backend$python3 -m venv .venv
+backend$source .venv/bin/activate  # Activar entorno virtual  (Sistemas basados en UNIX)
+PS .\backend>.\.venv\Scripts\activate  # Activar entorno virtual  (Windows). A veces, en lugar de "Scripts", sale "bin", cambiarlo si es necesario
+```
+
+Instalar dependencias y ejecutar la API
+
+```bash
+(.venv) backend$pip install -r requirements.txt
+(.venv) backend$uvicorn api.app:app
 ```
 
 Demás configuraciones extras, como el puerto, host, reload, se pueden agregar sin problemas, teniendo en cuenta la documentación de uvicorn.
