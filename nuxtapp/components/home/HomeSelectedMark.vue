@@ -37,6 +37,11 @@
                                         departmentName
                                     }}</DrawerTitle>
                                 </DrawerHeader>
+                                <div class="p-4">
+                                    <div class="flex items-center py-4">
+                                        <HomeGraphLineChart />
+                                    </div>
+                                </div>
                             </DrawerContent>
                         </Drawer>
                     </CardContent>

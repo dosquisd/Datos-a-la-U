@@ -20,5 +20,5 @@
 </script>
 
 <template>
-    <LineChart :data="sortedDataset" :categories="['value']" />
+    <LineChart :data="sortedDataset" :categories="['value']" index="date" />
 </template>
