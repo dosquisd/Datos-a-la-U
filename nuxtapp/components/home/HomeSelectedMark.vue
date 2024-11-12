@@ -1,6 +1,13 @@
 <script setup lang="ts">
+    const { getDepartmentName } = useDataMarkers();
     const { markData } = useDataMarkFocus();
     const { department } = useOptions();
+
+    const departmentName = computed(
+        () =>
+            department.value ||
+            getDepartmentName(markData.value?.name as string),
+    );
 </script>
 
 <template>
@@ -26,7 +33,9 @@
                             </DrawerTrigger>
                             <DrawerContent class="z-[1000]">
                                 <DrawerHeader>
-                                    <DrawerTitle>{{ department }}</DrawerTitle>
+                                    <DrawerTitle>{{
+                                        departmentName
+                                    }}</DrawerTitle>
                                 </DrawerHeader>
                             </DrawerContent>
                         </Drawer>

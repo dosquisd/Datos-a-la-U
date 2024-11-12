@@ -11,7 +11,10 @@
                     quede a tu gusto.
                 </SheetDescription>
             </SheetHeader>
-            <HomeSheetOptionsColorMode class="mt-4" />
+            <div class="mt-4 flex flex-col gap-8">
+                <HomeSheetOptionsColorMode />
+                <HomeSheetOptionsCourtHouses />
+            </div>
         </SheetContent>
     </Sheet>
 </template>
