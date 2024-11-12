@@ -9,6 +9,7 @@ import os
 import sys
 
 from api.utils import dpto_to_cod, mpio_to_cod, count
+from api.schemas import TimeSeriesModels, TimeSeries
 
 app = FastAPI()
 
@@ -98,7 +99,7 @@ def courthouse_count(
     courthouse: str,
     min_date: date = None,
     max_date: date = None
-) -> dict[str, list]:
+) -> TimeSeries:
     subdf = dataset.loc[
         dataset["NomCasaJusticia"] == courthouse,
         ["FechaSolicitud", "IdSolicitud"]
@@ -112,14 +113,19 @@ def department_count(
         department: str,
         min_date: date = None,
         max_date: date = None
-) -> dict[str, list]:
+) -> list[TimeSeriesModels]:
     cod_dpto = dpto_to_cod(department, cods)
     subdf = dataset.loc[
         dataset["COD_DPTO"] == cod_dpto,
         ["FechaSolicitud", "IdSolicitud"]
     ].reset_index(drop=True)
 
-    return count(subdf, min_date, max_date)
+    out = count(subdf, min_date, max_date)
+
+    # Meanwhile returning this way
+    n = len(out.Count)
+    return [TimeSeriesModels(date=out.FechaSolicitud[i], real=out.Count[i], predicted=0.0) 
+            for i in range(n)]
 
 
 @app.get("/data/municipality-count")
@@ -128,7 +134,7 @@ def municipality_count(
     department: str,
     min_date: date = None,
     max_date: date = None
-) -> dict[str, list]:
+) -> list[TimeSeriesModels]:
     cod_dpto = dpto_to_cod(department, cods)
     cod_mpio = mpio_to_cod(municipality, department, cods)
 
@@ -137,4 +143,9 @@ def municipality_count(
         ["FechaSolicitud", "IdSolicitud"]
     ].reset_index(drop=True)
 
-    return count(subdf, min_date, max_date)
+    out = count(subdf, min_date, max_date)
+
+    # Meanwhile returning this way
+    n = len(out.Count)
+    return [TimeSeriesModels(date=out.FechaSolicitud[i], real=out.Count[i], predicted=0.0) 
+            for i in range(n)]
