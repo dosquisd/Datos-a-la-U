@@ -69,7 +69,8 @@ def by_department(
     if not name:
         raise RuntimeError('?department_name is required')
 
-    response = dataset[dataset['department'] == name]
+    cod_dpto = dpto_to_cod(name, cods)
+    response = dataset.loc[dataset["COD_DPTO"] == cod_dpto]
 
     if not stream:
         total_items = len(response)
@@ -77,6 +78,8 @@ def by_department(
         end = start + page_size
         paginated_data = response.iloc[start:end]
         data = [row.to_dict() for _, row in paginated_data.iterrows()]
+        for i in range(len(data)):
+            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime('%Y-%m-%d')
 
         return {
             'total_items': total_items,
@@ -87,6 +90,7 @@ def by_department(
 
     async def event_generator():
         data = [row.to_dict() for _, row in response.iterrows()]
+        data["FechaSolicitud"] = [ts.strftime('%Y-%m-%d') for ts in response["FechaSolicitud"]]
 
         for row in data:
             yield json.dumps(row)
