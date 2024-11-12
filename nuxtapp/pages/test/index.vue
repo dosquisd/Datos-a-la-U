@@ -27,7 +27,7 @@
         :categories="['value']"
         index="date"
         :x-formatter="
-            (tick) => {
+            (tick: unknown) => {
                 if (typeof tick === 'number' && sortedDataset[tick]) {
                     const date = new Date(sortedDataset[tick].date);
 
