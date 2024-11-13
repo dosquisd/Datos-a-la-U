@@ -6,3 +6,4 @@
 *.shp filter=lfs diff=lfs merge=lfs -text
 *.shx filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+backend/data/data.csv filter=lfs diff=lfs merge=lfs -text
