@@ -9,7 +9,7 @@ import os
 import sys
 
 from api.utils import dpto_to_cod, mpio_to_cod, count
-from api.schemas import TimeSeriesModels, TimeSeries
+from api.schemas import Data
 
 app = FastAPI()
 
@@ -141,13 +141,19 @@ def courthouse_count(
     courthouse: str,
     min_date: date = None,
     max_date: date = None
-) -> TimeSeries:
+) -> Data:
+    """
+    Returns a count of requests in the given courthouse in an interval of time
+    """
     subdf = dataset.loc[
         dataset["NomCasaJusticia"] == courthouse,
         ["FechaSolicitud", "IdSolicitud"]
     ].reset_index(drop=True)
 
-    return count(subdf, min_date, max_date)
+    real_data = count(subdf, min_date, max_date)
+
+    # Meanwhile returning this way
+    return Data(real=real_data, predicted=None)
 
 
 @app.get("/data/department-count")
@@ -155,19 +161,20 @@ def department_count(
         department: str,
         min_date: date = None,
         max_date: date = None
-) -> list[TimeSeriesModels]:
+) -> Data:
+    """
+    Returns a count of requests in the given department in an interval of time
+    """
     cod_dpto = dpto_to_cod(department, cods)
     subdf = dataset.loc[
         dataset["COD_DPTO"] == cod_dpto,
         ["FechaSolicitud", "IdSolicitud"]
     ].reset_index(drop=True)
 
-    out = count(subdf, min_date, max_date)
+    real_data = count(subdf, min_date, max_date)
 
     # Meanwhile returning this way
-    n = len(out.Count)
-    return [TimeSeriesModels(date=out.FechaSolicitud[i], real=out.Count[i], predicted=0.0) 
-            for i in range(n)]
+    return Data(real=real_data, predicted=None)
 
 
 @app.get("/data/municipality-count")
@@ -176,7 +183,10 @@ def municipality_count(
     department: str,
     min_date: date = None,
     max_date: date = None
-) -> list[TimeSeriesModels]:
+) -> Data:
+    """
+    Returns a count of requests in the given municipality in an interval of time
+    """
     cod_dpto = dpto_to_cod(department, cods)
     cod_mpio = mpio_to_cod(municipality, department, cods)
 
@@ -185,9 +195,7 @@ def municipality_count(
         ["FechaSolicitud", "IdSolicitud"]
     ].reset_index(drop=True)
 
-    out = count(subdf, min_date, max_date)
+    real_data = count(subdf, min_date, max_date)
 
     # Meanwhile returning this way
-    n = len(out.Count)
-    return [TimeSeriesModels(date=out.FechaSolicitud[i], real=out.Count[i], predicted=0.0) 
-            for i in range(n)]
+    return Data(real=real_data, predicted=None)
