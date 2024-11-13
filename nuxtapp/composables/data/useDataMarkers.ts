@@ -1,40 +1,35 @@
 import { filteredData } from "@/schema/datashape";
+import { z } from "zod";
+
+const Response = z.object({
+    courthouse: z.string(),
+    lat: z.string(),
+    lon: z.string(),
+});
+
+const ResponseArray = z.array(Response);
 
 export default function () {
     const marks = useState<Mark[] | undefined>();
 
     function makeMarks(department?: string) {
-        if (!department) {
-            marks.value = filteredData.flatMap((item) =>
-                Object.values(item.municipalities)
-                    .filter((courtHouseData) => courtHouseData !== null)
-                    .flatMap((courtHouseData) =>
-                        courtHouseData!.map((courtHouse) => ({
-                            lat: parseFloat(courtHouse.lat),
-                            lon: parseFloat(courtHouse.lon),
-                            name: courtHouse.courthouse,
-                        })),
-                    ),
-            );
-
-            return;
-        }
-
-        const boundedData = filteredData.find(
-            (item) => item.department === department,
-        );
-
-        if (!boundedData) return;
-
-        marks.value = Object.values(boundedData.municipalities)
-            .filter((courtHouseData) => courtHouseData !== null)
-            .flatMap((courtHouseData) =>
-                courtHouseData!.map((courtHouse) => ({
-                    lat: parseFloat(courtHouse.lat),
-                    lon: parseFloat(courtHouse.lon),
-                    name: courtHouse.courthouse,
+        $fetch("/data/courthouses", {
+            baseURL: useRuntimeConfig().public.apiBase,
+            query: {
+                department,
+            },
+        })
+            .then<z.infer<typeof ResponseArray>>((response) =>
+                ResponseArray.parse(response),
+            )
+            .then<Mark[]>((response) =>
+                response.map((item) => ({
+                    lat: parseFloat(item.lat),
+                    lon: parseFloat(item.lon),
+                    name: item.courthouse,
                 })),
-            );
+            )
+            .then((response) => (marks.value = response));
     }
 
     function getDepartmentName(courthouseName: string): string | undefined {

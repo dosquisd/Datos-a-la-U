@@ -17,6 +17,11 @@ export default defineNuxtConfig({
         ["@nuxtjs/color-mode", { classSuffix: "" }],
         "@vueuse/motion/nuxt",
     ],
+    runtimeConfig: {
+        public: {
+            apiBase: "http://localhost:8000",
+        },
+    },
     imports: {
         dirs: ["composables/**"],
     },

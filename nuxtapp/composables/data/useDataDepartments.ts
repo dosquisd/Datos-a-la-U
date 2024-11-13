@@ -1,12 +1,21 @@
-import rawData from "@/data/depts_mpios.json";
-import { filteredData } from "@/schema/datashape";
+import { z } from "zod";
+
+const Response = z.array(z.string());
 
 export default function () {
-    const departments = computed<string[]>(() => {
-        if (!rawData) return [];
-
-        return filteredData.map((item) => item.department);
+    const { data, error } = useFetch<unknown>("/data/department", {
+        baseURL: useRuntimeConfig().public.apiBase,
+        method: "GET",
     });
 
-    return { departments };
+    const departments = computed<z.infer<typeof Response> | undefined>(() => {
+        if (!data.value) return;
+
+        return Response.parse(data.value);
+    });
+
+    return {
+        departments,
+        error,
+    };
 }

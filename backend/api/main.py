@@ -1,17 +1,24 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
-
 import json
 import pandas as pd
 from datetime import date
-
 import os
 import sys
-
 from api.utils import dpto_to_cod, mpio_to_cod, count
 from api.schemas import Data
+from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.on_event("startup")
@@ -35,7 +42,8 @@ async def startup_event():
         dataset = pd.read_csv(
             os.path.join(DATA_PATH, "processed", "dataset.csv")
         )
-        dataset["FechaSolicitud"] = pd.to_datetime(dataset["FechaSolicitud"], format="%Y-%m-%d")
+        dataset["FechaSolicitud"] = pd.to_datetime(
+            dataset["FechaSolicitud"], format="%Y-%m-%d")
 
         with open(
             os.path.join(DATA_PATH, "processed", "dpts_cods_mpios.json"),
@@ -56,12 +64,48 @@ async def startup_event():
         sys.exit(1)
 
 
-@app.get('/healthcheck')
-def healthcheck():
-    try:
-        return {'len': len(dataset)}
-    except NameError:
-        raise HTTPException(status_code=500, detail="DataFrame no cargado")
+@app.get("/data/department")
+def departments() -> list[str]:
+    """
+    Returns a list with all departments
+    """
+
+    if 'courthouses' not in globals():
+        raise HTTPException(status_code=500, detail='JSON not loaded')
+
+    return [x["department"] for x in courthouses]
+
+
+@app.get("/data/courthouses")
+def courthouses_data(department: Optional[str] = None) -> list[dict]:
+    """
+    Returns a list of courthouses. If department is None, then returns all
+    courthouses, otherwise returns all courthouses in the given department
+    """
+
+    filtered_departments = courthouses
+
+    if department is not None:
+        department = department.upper()
+        filtered_departments = [
+            dic for dic in courthouses if dic["department"] == department]
+
+        if not filtered_departments:
+            raise HTTPException(status_code=404, detail="Department not found")
+
+    result = []
+    for dep in filtered_departments:
+        for municipalities in dep["municipalities"].values():
+            if municipalities is None:
+                continue
+            for courthouse in municipalities:
+                result.append({
+                    "courthouse": courthouse["courthouse"],
+                    "lat": courthouse["lat"],
+                    "lon": courthouse["lon"]
+                })
+
+    return result
 
 
 @app.get('/data/by_department')
@@ -87,7 +131,8 @@ def by_department(
         paginated_data = response.iloc[start:end]
         data = [row.to_dict() for _, row in paginated_data.iterrows()]
         for i in range(len(data)):
-            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime('%Y-%m-%d')
+            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime(
+                '%Y-%m-%d')
 
         return {
             'total_items': total_items,
@@ -99,41 +144,13 @@ def by_department(
     async def event_generator():
         data = [row.to_dict() for _, row in response.iterrows()]
         for i in range(len(data)):
-            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime('%Y-%m-%d')
+            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime(
+                '%Y-%m-%d')
 
         for row in data:
             yield json.dumps(row)
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
-
-
-@app.get("/department")
-def departments() -> list[str]:
-    """
-    Returns a list with all departments
-    """
-    return [x["department"] for x in courthouses]
-
-
-@app.get("/courthouses")
-def courthouses_department(department: str | None = None) -> list[str]:
-    """
-    Returns a list of courthouses. If department is None, then returns all
-    courthouses, otherwise returns all courthouses in the given department
-    """
-    tmp = courthouses.copy()
-    if department is not None:
-        department = department.upper()
-        tmp = [dic for dic in tmp if dic["department"] == department]
-
-    out = []
-    for dic in tmp:
-        for courths in dic["municipalities"].values():
-            if courths is None:
-                continue
-            out.extend([x["courthouse"] for x in courths])
-
-    return out
 
 
 @app.get("/data/courthouse-count")

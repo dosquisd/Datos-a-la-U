@@ -14,7 +14,7 @@
             <SelectValue placeholder="Selecciona un departamento" />
         </SelectTrigger>
         <SelectContent class="z-[1000]">
-            <template v-if="departments.length">
+            <template v-if="departments?.length">
                 <SelectItem
                     v-for="item in departments"
                     :key="item"
