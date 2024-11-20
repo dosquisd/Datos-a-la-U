@@ -3,11 +3,21 @@
     const { markData } = useDataMarkFocus();
     const { department } = useOptions();
 
-    const departmentName = computed(
-        () =>
-            department.value ||
-            getDepartmentName(markData.value?.name as string),
-    );
+    const departmentName = useState(department.value);
+
+    onMounted(() => {
+        watch(markData, async () => {
+            if (!department.value) {
+                departmentName.value = await getDepartmentName(
+                    markData.value?.name as string,
+                );
+
+                return;
+            }
+
+            departmentName.value = department.value;
+        });
+    });
 </script>
 
 <template>

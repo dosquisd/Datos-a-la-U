@@ -7,7 +7,7 @@ import os
 import sys
 from api.utils import dpto_to_cod, mpio_to_cod, count
 from api.schemas import Data
-from typing import Optional
+from typing import Optional, Dict
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -74,6 +74,30 @@ def departments() -> list[str]:
         raise HTTPException(status_code=500, detail='JSON not loaded')
 
     return [x["department"] for x in courthouses]
+
+
+@app.get('/data/department/courthouse')
+def courthouse(courthouse_name: str) -> Dict[str, str]:
+    """
+    Returns one courthouse, based on some params
+    """
+
+    sys.stdout.write(courthouse_name)
+
+    if 'courthouses' not in globals():
+        raise HTTPException(status_code=500, detail='JSON nto loaded')
+
+    for item in courthouses:
+        department = item['department']
+        municipalities = item['municipalities']
+
+        for _, _courthouses in municipalities.items():
+            if _courthouses:
+                for courthouse in _courthouses:
+                    if str(courthouse['courthouse']).lower().strip() == courthouse_name.lower().strip():
+                        return {'department': department}
+
+    raise HTTPException(status_code=400, detail='Courthouse not found')
 
 
 @app.get("/data/courthouses")

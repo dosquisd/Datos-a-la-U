@@ -1,4 +1,3 @@
-import { filteredData } from "@/schema/datashape";
 import { z } from "zod";
 
 const Response = z.object({
@@ -8,6 +7,10 @@ const Response = z.object({
 });
 
 const ResponseArray = z.array(Response);
+
+const Department = z.object({
+    department: z.string(),
+});
 
 export default function () {
     const marks = useState<Mark[] | undefined>();
@@ -32,16 +35,17 @@ export default function () {
             .then((response) => (marks.value = response));
     }
 
-    function getDepartmentName(courthouseName: string): string | undefined {
-        const item = filteredData.find((item) =>
-            Object.values(item.municipalities).some((courtHouses) =>
-                courtHouses?.some(
-                    (courtHouse) => courtHouse.courthouse === courthouseName,
-                ),
-            ),
-        );
-
-        return item?.department;
+    function getDepartmentName(courthouseName: string) {
+        return $fetch("/data/department/courthouse", {
+            baseURL: useRuntimeConfig().public.apiBase,
+            query: {
+                courthouse_name: courthouseName,
+            },
+        })
+            .then<z.infer<typeof Department>>((response) =>
+                Department.parse(response),
+            )
+            .then((response) => Promise.resolve(response.department));
     }
 
     onMounted(() => {
