@@ -1,7 +1,8 @@
+import numpy as np
 import pandas as pd
-from datetime import date
+from datetime import date, timedelta
 
-from api.schemas import RealData
+from api.schemas import RealData, PredictedData
 
 
 def dpto_to_cod(department: str, cods: dict) -> int:
@@ -31,4 +32,32 @@ def count(
     values = count_df["Count"].tolist()
 
     return [RealData(date_request=dt, real_value=value) 
+            for dt, value in zip(dts, values)]
+
+
+def generate_random_timeserie(
+    first_date: date,
+    last_date: date | None = None,
+    range_values: tuple[int, int] | None = None
+) -> list[PredictedData]:
+    """
+    Generate a random timeseries. By default, if last_date is None,
+    then timeserie is for a month
+    """
+    if last_date is None:
+        last_date = first_date + timedelta(days=30)
+    
+    if range_values is None:
+        range_values = (0, 100)
+
+    dts = pd.date_range(
+        start=first_date.strftime("%Y-%m-%d"),
+        end=last_date.strftime("%Y-%m-%d"),
+        freq="D"
+    ).strftime("%Y-%m-%d")
+
+    n = len(dts)
+    values = np.random.randint(range_values[0], range_values[1] + 1, size=n)
+
+    return [PredictedData(date_request=dt, predicted_value=value) 
             for dt, value in zip(dts, values)]

@@ -2,10 +2,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 import json
 import pandas as pd
-from datetime import date
+from datetime import date, datetime, timedelta
 import os
 import sys
-from api.utils import dpto_to_cod, mpio_to_cod, count
+from api.utils import dpto_to_cod, mpio_to_cod, count, generate_random_timeserie
 from api.schemas import Data
 from typing import Optional, Dict
 from fastapi.middleware.cors import CORSMiddleware
@@ -186,7 +186,9 @@ def courthouse_count(
 
     real_data = count(subdf, min_date, max_date)
 
-    return Data(real=real_data, predicted=None)
+    # Meanwhile
+    last_date = datetime.strptime(real_data[-1].date_request, "%Y-%m-%d").date() + timedelta(days=1)
+    return Data(real=real_data, predicted=generate_random_timeserie(last_date))
 
 
 @app.get("/data/department-count")
@@ -207,7 +209,8 @@ def department_count(
     real_data = count(subdf, min_date, max_date)
 
     # Meanwhile returning this way
-    return Data(real=real_data, predicted=None)
+    last_date = datetime.strptime(real_data[-1].date_request, "%Y-%m-%d").date() + timedelta(days=1)
+    return Data(real=real_data, predicted=generate_random_timeserie(last_date))
 
 
 @app.get("/data/municipality-count")
