@@ -1,55 +1,74 @@
 <script setup lang="ts">
-    // import { z } from "zod";
+    import HomeGraphLineChartTooltip from "@/components/home/graph/HomeGraphLineChartTooltip.vue";
+    import { z } from "zod";
 
-    // const DataShape = z.object({
+    const RealDataShape = z.object({
+        date_request: z.string(),
+        real_value: z.number(),
+    });
+
+    const RealDataShapeArray = z.array(RealDataShape);
+
+    // const PredictedDataShape = z.object({
     //     date_request: z.string(),
-    //     value: z.number(),
+    //     predicted_value: z.number(),
     // });
 
-    // const DataShapeArray = z.array(DataShape);
+    const ResponseData = z.object({
+        real: RealDataShapeArray,
+        predicted: z.null(),
+    });
 
-    // const ResponseData = z.object({
-    //     real: DataShapeArray,
-    //     // predicted: z.null(),
-    // });
+    const { markData } = useDataMarkFocus();
 
-    // const { markData } = useDataMarkFocus();
+    const { data } = await useFetch<unknown>("/data/courthouse-count", {
+        baseURL: useRuntimeConfig().public.apiBase,
+        query: {
+            courthouse: markData.value?.name,
+        },
+        watch: [markData],
+    });
 
-    // const { data } = await useFetch<unknown>("/data/courthouse-count", {
-    //     baseURL: useRuntimeConfig().public.apiBase,
-    //     query: {
-    //         courthouse: markData.value?.name,
-    //     },
-    //     watch: [markData],
-    // });
-
-    // const parsedData = computed(() => ResponseData.parse(data.value));
-
-    // Dataset para `ObjectShapeA`
-    const datasetA = Array.from({ length: 5 }).map((_, i) => ({
-        id: `id-${i + 1}`,
-        value: Math.floor(Math.random() * 100), // Valor aleatorio entre 0 y 100
-        mergeOnField: `common-${i + 1}`, // Campo común
-    }));
-
-    // Dataset para `ObjectShapeB`
-    const datasetB = Array.from({ length: 5 }).map((_, i) => ({
-        key: `key-${i + 1}`,
-        enabled: Math.random() > 0.5, // Valor booleano aleatorio
-        mergeOnField: `common-${i + 1}`, // Campo común
-    }));
+    const parsedData = computed(() => ResponseData.parse(data.value));
 
     const mergedData = computed(() =>
         merge({
-            initial: datasetA,
-            other: datasetB,
-            key: "mergeOnField",
+            initial: parsedData.value.real,
+            other: parsedData.value.real,
+            key: "date_request",
         }),
+    );
+
+    const parsedDates = computed(() =>
+        mergedData.value.map((item) => ({
+            ...item,
+            date_request: new Date(item.date_request),
+        })),
     );
 </script>
 
 <template>
-    <div>
-        {{ mergedData }}
-    </div>
+    <LineChart
+        :data="parsedDates"
+        :categories="['real_value']"
+        index="date_request"
+        :x-formatter="
+            (tick: unknown) => {
+                if (typeof tick === 'number' && parsedDates[tick]) {
+                    const date = new Date(parsedDates[tick].date_request);
+
+                    const formattedDate = new Intl.DateTimeFormat('es', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                    });
+
+                    return formattedDate.format(date);
+                }
+
+                return '';
+            }
+        "
+        :custom-tooltip="HomeGraphLineChartTooltip"
+    />
 </template>

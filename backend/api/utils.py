@@ -30,5 +30,5 @@ def count(
     dts = [ts.strftime('%Y-%m-%d') for ts in count_df.index]
     values = count_df["Count"].tolist()
 
-    return [RealData(date_request=dt, value=value) 
+    return [RealData(date_request=dt, real_value=value) 
             for dt, value in zip(dts, values)]
