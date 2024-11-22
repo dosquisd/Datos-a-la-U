@@ -186,9 +186,11 @@ def courthouse_count(
 
     real_data = count(subdf, min_date, max_date)
 
-    # Meanwhile
-    last_date = datetime.strptime(real_data[-1].date_request, "%Y-%m-%d").date() + timedelta(days=1)
-    return Data(real=real_data, predicted=generate_random_timeserie(last_date))
+    if max_date is None or max_date >= date.today():
+        # Meanwhile returning this way
+        last_date = datetime.strptime(real_data[-1].date_request, "%Y-%m-%d").date() + timedelta(days=1)
+        return Data(real=real_data, predicted=generate_random_timeserie(last_date))
+    return Data(real=real_data, predicted=None)
 
 
 @app.get("/data/department-count")
@@ -208,9 +210,12 @@ def department_count(
 
     real_data = count(subdf, min_date, max_date)
 
-    # Meanwhile returning this way
-    last_date = datetime.strptime(real_data[-1].date_request, "%Y-%m-%d").date() + timedelta(days=1)
-    return Data(real=real_data, predicted=generate_random_timeserie(last_date))
+    if max_date is None or max_date >= date.today():
+        # Meanwhile returning this way
+        last_date = datetime.strptime(real_data[-1].date_request, "%Y-%m-%d").date() + timedelta(days=1)
+        return Data(real=real_data, predicted=generate_random_timeserie(last_date))
+    return Data(real=real_data, predicted=None)
+
 
 
 @app.get("/data/municipality-count")
