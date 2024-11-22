@@ -6,4 +6,8 @@ declare global {
         lon: number;
         name: string;
     }
+
+    type Prettify<T> = {
+        [K in keyof T]: T[K];
+    } & {};
 }

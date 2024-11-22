@@ -137,44 +137,37 @@ def by_department(
     name: str,
     page: int = 1,
     page_size: int = 1000,
-    stream: bool = False
 ):
     if 'dataset' not in globals() or dataset.empty:
         raise HTTPException(status_code=500, detail="DataFrame not loaded")
 
     if not name:
-        raise RuntimeError('?department_name is required')
+        raise HTTPException(
+            status_code=400, detail='?department_name is required')
 
-    cod_dpto = dpto_to_cod(name, cods)
+    try:
+        cod_dpto = dpto_to_cod(name, cods)
+    except:
+        raise HTTPException(
+            status_code=400, detail='given ?department_name was not found')
+
     response = dataset.loc[dataset["COD_DPTO"] == cod_dpto]
 
-    if not stream:
-        total_items = len(response)
-        start = (page - 1) * page_size
-        end = start + page_size
-        paginated_data = response.iloc[start:end]
-        data = [row.to_dict() for _, row in paginated_data.iterrows()]
-        for i in range(len(data)):
-            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime(
-                '%Y-%m-%d')
+    total_items = len(response)
+    start = (page - 1) * page_size
+    end = start + page_size
+    paginated_data = response.iloc[start:end]
+    data = [row.to_dict() for _, row in paginated_data.iterrows()]
+    for i in range(len(data)):
+        data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime(
+            '%Y-%m-%d')
 
-        return {
-            'total_items': total_items,
-            'page': page,
-            'page_size': page_size,
-            'data': json.dumps(data)
-        }
-
-    async def event_generator():
-        data = [row.to_dict() for _, row in response.iterrows()]
-        for i in range(len(data)):
-            data[i]["FechaSolicitud"] = data[i]["FechaSolicitud"].strftime(
-                '%Y-%m-%d')
-
-        for row in data:
-            yield json.dumps(row)
-
-    return StreamingResponse(event_generator(), media_type="text/event-stream")
+    return {
+        'total_items': total_items,
+        'page': page,
+        'page_size': page_size,
+        'data': json.dumps(data)
+    }
 
 
 @app.get("/data/courthouse-count")
@@ -193,7 +186,6 @@ def courthouse_count(
 
     real_data = count(subdf, min_date, max_date)
 
-    # Meanwhile returning this way
     return Data(real=real_data, predicted=None)
 
 
