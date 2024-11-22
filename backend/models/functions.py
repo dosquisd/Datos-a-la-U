@@ -78,3 +78,19 @@ def create_continuos_time_series(df: pd.DataFrame) -> pd.DataFrame:
     final_df.loc[~final_df['FechaSolicitud'].isin(df['FechaSolicitud']), 'CantidadCasos'] = 0
 
     return final_df
+
+
+def create_windows(data, window_size=15):
+    x, y = [], []
+    for i in range(len(data) - window_size):
+        x.append(data[i:i + window_size])
+        y.append(data[i + window_size])
+    return np.array(x), np.array(y)
+
+
+def split_data(data, split_ratio=0.8):
+    train_size = int(len(data) * split_ratio)
+    train, val, test = (data[:int(train_size - train_size * 0.2)],
+                        data[int(train_size - train_size * 0.2):train_size],
+                        data[train_size:])
+    return train, val, test
